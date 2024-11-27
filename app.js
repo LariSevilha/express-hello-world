@@ -2,18 +2,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}));
-
-app.get("/", (req, res) => res.type('html').send(html));
-
-app.get('/req', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yo!')
-})
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const html = `
 <!DOCTYPE html>
@@ -64,4 +54,19 @@ const html = `
     </section>
   </body>
 </html>
-`
+`;
+
+app.get("/", (req, res) => res.type("html").send(html));
+
+app.get("/req", (req, res) => {
+  console.log("Just got a request!");
+  res.send("Yo!");
+});
+
+// Novo endpoint /meunome
+app.get("/meunome", (req, res) => {
+  res.send("Meu nome é Larissa Sevilha 🤩");
+});
+
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
